@@ -1,0 +1,2 @@
+import {Router} from 'express';import {protect,allow} from '../middleware/auth.js';import * as m from '../controllers/miscController.js';
+const r=Router();r.use(protect);r.get('/notifications',m.notifications);r.patch('/notifications/:id/read',m.markRead);r.get('/departments',m.departments);r.post('/departments',allow('admin'),m.createDepartment);r.get('/users',allow('admin'),m.users);r.post('/users',allow('admin'),m.createStaff);r.get('/audit-logs',allow('admin'),m.auditLogs);r.post('/escalate',allow('admin'),m.runEscalation);export default r;
